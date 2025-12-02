@@ -1,0 +1,56 @@
+/* Container for Sidebar and Hover Box */
+.sidebar-container {
+  display: flex;
+  position: relative;
+}
+
+.sidebar {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;  
+  width: 86px;
+  background-color: white;
+  height: 100vh;
+}
+
+.sidebar-item-container {
+  position: relative;
+}
+
+.sidebar-item {
+  padding: 15px;
+  color: white;
+  cursor: pointer;
+  border-bottom: 1px solid #444;
+  transition: background-color 0.3s ease;
+}
+
+.sidebar-item:hover {
+  background-color: yellow;
+  color: black;
+}
+
+.hover-box {
+  position: absolute;
+  left: 86px; 
+  width: 200px;
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  padding: 10px;
+  transition: border-color 0.3s ease;
+}
+
+.hover-box-item {
+  padding: 10px;
+  background-color: #fff;
+  border-bottom: 1px solid #eee;
+}
+
+.hover-box-item:hover {
+  background-color: #ddd;
+}
+
+/* When hovering on sidebar-item, show the yellow border on the hover-box */
+.sidebar-item:hover + .hover-box {
+  border-color: yellow;
+}

@@ -1,0 +1,11 @@
+export const SIM_TYPE = 'Sim Type';
+export const CONNECTION_TYPE = 'Connection Type';
+export const SIM_CATEGORY = 'Sim Category';
+export const SIM_PREFIX = 'Sim Prefix';
+export const SIM_MANUFACTURER = 'Sim Manufacturer';
+export const HLR_FUR = 'HLR Config';
+export const CONSTANT = 'CONSTANT';
+export const UDCHLR = 'UDCHLR';
+export const HLR_FUR_1 = 'FUR1';
+export const HLR_FUR_2 = 'FUR2';
+export const HLR_FUR_3 = 'FUR3';
