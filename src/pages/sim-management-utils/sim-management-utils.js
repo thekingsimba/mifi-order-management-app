@@ -321,9 +321,9 @@ export const joinOutputVariablesData = (
   return combinedData;
 };
 
-export const prepareDataForDRM = (arrayOfObj) => {
+export const prepareDataForRMS = (arrayOfObj) => {
   return arrayOfObj.map((item) => {
-    // console.log('prepareDataForDRM building CSV', item);
+    // console.log('prepareDataForRMS building CSV', item);
     const row = {};
     row['SIM'] = item['ICCID']?.toString() || '';
     row['IMSI'] = item['IMSI']?.toString() || '';

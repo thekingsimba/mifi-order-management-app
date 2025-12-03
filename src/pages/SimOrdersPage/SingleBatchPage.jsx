@@ -6,7 +6,7 @@ import {
   editSimOrder,
   getResourceDetails,
   simOrderDetails,
-  uploadOutfileCsvToDRM,
+  uploadOutfileCsvToRMS,
   uploadSimOrderOutfile,
 } from '../../services/ApiService';
 import { setSimManagementTableConfigUI } from '../../redux/features/manage-sim/simManagementDataSlice';
@@ -39,7 +39,7 @@ import {
 import {
   formatStringFromCamelCase,
   joinOutputVariablesData,
-  prepareDataForDRM,
+  prepareDataForRMS,
   splitArray,
 } from '../sim-management-utils/sim-management-utils';
 import DangerousIcon from '@mui/icons-material/Dangerous';
@@ -314,8 +314,8 @@ function SingleBatchPage() {
     }
   };
 
-  const submitToDrmApp = async () => {
-    const csvArrayOfObject = prepareDataForDRM(combinedOutFileData);
+  const submitToRmsApp = async () => {
+    const csvArrayOfObject = prepareDataForRMS(combinedOutFileData);
     //console.log(csvArrayOfObject);
 
     const csvFileKeyList = Object.keys(csvArrayOfObject[0]);
@@ -346,9 +346,9 @@ function SingleBatchPage() {
       setErrorMessage(
         "We couldn't find a resource category called : " +
           currentBatchData.simType +
-          ' in DRM resource inventory. Kindly check if ' +
+          ' in RMS resource inventory. Kindly check if ' +
           currentBatchData.simType +
-          ' is currently in the available resource category of DRM'
+          ' is currently in the available resource category of RMS'
       );
       setSuccessMessage(null);
       setIsOpen(true);
@@ -364,14 +364,14 @@ function SingleBatchPage() {
       const url = window.URL.createObjectURL(new Blob([csvResponse.data]));
       const link = document.createElement('a');
       link.href = url;
-      const drmCsvFileName = batchNumber + '_OTA_OUT_FOR_DRM.csv';
-      link.setAttribute('download', drmCsvFileName);
+      const rmsCsvFileName = batchNumber + '_OTA_OUT_FOR_RMS.csv';
+      link.setAttribute('download', rmsCsvFileName);
       document.body.appendChild(link);
       link.click();
       link.remove();
 
-      // SEND CSV TO DRM =========================================
-      const drmCsvFile = new File([csvResponse.data], drmCsvFileName, {
+      // SEND CSV TO RMS =========================================
+      const rmsCsvFile = new File([csvResponse.data], rmsCsvFileName, {
         type: 'text/csv',
       });
 
@@ -387,7 +387,7 @@ function SingleBatchPage() {
       });
 
       const formData = new FormData();
-      formData.append('file', drmCsvFile);
+      formData.append('file', rmsCsvFile);
       formData.append('columnMapping', columnMapping);
       formData.append('categoryId', categoryId);
       formData.append('schemaId', schemaId);
@@ -395,9 +395,9 @@ function SingleBatchPage() {
         formData.append(bodyKey, CSV_FILE_TRANSFER_BODY[bodyKey]);
       });
 
-      const drmResponse = await transferCsvToDrm(formData, drmCsvFileName);
+      const rmsResponse = await transferCsvToRms(formData, rmsCsvFileName);
 
-      if (drmResponse.data) {
+      if (rmsResponse.data) {
         await updateTheBatchAndSave(batchNumber, SUBMITTED);
       }
     } else {
@@ -447,20 +447,20 @@ function SingleBatchPage() {
     }
   };
 
-  const transferCsvToDrm = async (formData, drmCsvFileName) => {
+  const transferCsvToRms = async (formData, rmsCsvFileName) => {
     try {
-      const drmResponse = await uploadOutfileCsvToDRM(formData);
+      const rmsResponse = await uploadOutfileCsvToRMS(formData);
 
-      console.log('drmResponse', drmResponse);
+      console.log('rmsResponse', rmsResponse);
 
       setErrorMessage(null);
       setSuccessMessage(
-        'A CSV file was successfully sent to DRM: ' + drmCsvFileName
+        'A CSV file was successfully sent to RMS: ' + rmsCsvFileName
       );
       setIsOpen(true);
     } catch (error) {
       setErrorMessage(
-        'An error occurred when transferring the csv file to DRM'
+        'An error occurred when transferring the csv file to RMS'
       );
       setSuccessMessage(null);
       setIsOpen(true);
@@ -728,13 +728,13 @@ function SingleBatchPage() {
                   !otaFileData?.header?.Batch || !outFileData?.header?.Batch
                 }
                 color="primary"
-                onClick={submitToDrmApp}
+                onClick={submitToRmsApp}
                 style={{
                   position: 'relative',
                   top: '-3px',
                 }}
               >
-                Submit to DRM
+                Submit to RMS
               </Button>
             </Box>
           </Card>

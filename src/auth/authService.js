@@ -98,7 +98,7 @@ export const fetchUserInfo = async (params) => {
   const apiUrl = config?.apiUrl;
   const accessToken = localStorage.getItem('access_token') || '';
   try {
-    const suffixUrl = `${apiUrl}/tt-api/mifi-order/v1/UserGroup/${params.type}`;
+    const suffixUrl = `${apiUrl}/mifi-api/mifi-order/v1/UserGroup/${params.type}`;
     const response = await http.get(`${suffixUrl}?value=${params.value}`, {
       headers: {
         Accept: 'application/json',

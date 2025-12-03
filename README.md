@@ -46,7 +46,7 @@ A comprehensive React-based web application for managing MiFi (Mobile WiFi) and 
 
 - **Node.js**: Version 16.x or higher
 - **npm**: Version 8.x or higher (or yarn/pnpm)
-- **Backend API**: Access to the DRM API and File Generator API services
+- **Backend API**: Access to the RMS API and File Generator API services
 
 ## 🔧 Installation
 
@@ -222,7 +222,7 @@ The application uses OAuth 2.0 / OpenID Connect for authentication with the foll
 - **Upload**: Upload OTA out files and manufacturer ZIP files
 - **Generate**: Create CSV files from JSON data
 - **Download**: Export order data and configuration files
-- **Process**: Bulk process CSV files for DRM system
+- **Process**: Bulk process CSV files for RMS system
 
 ## 🎨 UI/UX Features
 
@@ -286,7 +286,7 @@ The application includes comprehensive error handling:
 
 The application integrates with the following main API endpoints:
 
-### GSM Chip Management API (`/drm-api/api/GSM Chip-management/v1/`)
+### GSM Chip Management API (`/rms-api/api/GSM Chip-management/v1/`)
 - `/GSM Chip-order` - GSM Chip order operations
 - `/GSM Chip-type` - GSM Chip type management
 - `/GSM Chip-category` - Category management
@@ -305,7 +305,7 @@ The application integrates with the following main API endpoints:
 - `/json-to-csv/convert/` - Convert JSON to CSV
 - `/infile/{orderId}/` - Generate infile for order
 
-### User Management API (`/tt-api/mifi-order/v1/`)
+### User Management API (`/mifi-api/mifi-order/v1/`)
 - `/UserGroup/{type}` - User group information
 - `/getTokenAuth/getToken` - Token exchange
 

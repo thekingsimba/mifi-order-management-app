@@ -27,7 +27,7 @@ export const apiErrorHandle = async (res, errorMessage) => {
 };
 
 export const getSimOrderData = async () => {
-  const apiUrl = `${config.baseUrl}/drm-api/api/sim-management/v1/sim-order`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/sim-management/v1/sim-order`;
   try {
     const response = await http.get(apiUrl, {
       headers: {
@@ -44,7 +44,7 @@ export const getSimOrderData = async () => {
 };
 
 export const createSimTypes = async (data) => {
-  const apiUrl = `${config.baseUrl}/drm-api/api/sim-management/v1/sim-type`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/sim-management/v1/sim-type`;
   const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
   data['createdBy'] = loggedInUser.fullname || '';
   try {
@@ -63,7 +63,7 @@ export const createSimTypes = async (data) => {
 };
 
 export const getSimTypes = async () => {
-  const apiUrl = `${config.baseUrl}/drm-api/api/sim-management/v1/sim-type`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/sim-management/v1/sim-type`;
   try {
     const response = await http.get(apiUrl, {
       headers: {
@@ -82,7 +82,7 @@ export const getSimTypes = async () => {
 export const updateSimTypes = async (data, seq_id) => {
   //console.log(data, " the data in update")
 
-  const apiUrl = `${config.baseUrl}/drm-api/api/sim-management/v1/sim-type/${seq_id}`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/sim-management/v1/sim-type/${seq_id}`;
   const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
   data['lastModifiedBy'] = loggedInUser.fullname || '';
 
@@ -103,7 +103,7 @@ export const updateSimTypes = async (data, seq_id) => {
 };
 
 export const deleteSimTypes = async (id) => {
-  const apiUrl = `${config.baseUrl}/drm-api/api/sim-management/v1/sim-type/${id}`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/sim-management/v1/sim-type/${id}`;
   try {
     const response = await http.delete(apiUrl, {
       headers: {
@@ -120,7 +120,7 @@ export const deleteSimTypes = async (id) => {
 };
 
 export const createSimCategories = async (data) => {
-  const apiUrl = `${config.baseUrl}/drm-api/api/sim-management/v1/sim-category`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/sim-management/v1/sim-category`;
   const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
   data['createdBy'] = loggedInUser.fullname || '';
   try {
@@ -140,7 +140,7 @@ export const createSimCategories = async (data) => {
 };
 
 export const getSimCategories = async () => {
-  const apiUrl = `${config.baseUrl}/drm-api/api/sim-management/v1/sim-category`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/sim-management/v1/sim-category`;
   try {
     const response = await http.get(apiUrl, {
       headers: {
@@ -157,7 +157,7 @@ export const getSimCategories = async () => {
 };
 
 export const updateSimCategories = async (data, seq_id) => {
-  const apiUrl = `${config.baseUrl}/drm-api/api/sim-management/v1/sim-category/${seq_id}`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/sim-management/v1/sim-category/${seq_id}`;
   const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
   data['lastModifiedBy'] = loggedInUser.fullname || '';
   try {
@@ -177,7 +177,7 @@ export const updateSimCategories = async (data, seq_id) => {
 };
 
 export const deleteSimCategories = async (id) => {
-  const apiUrl = `${config.baseUrl}/drm-api/api/sim-management/v1/sim-category/${id}`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/sim-management/v1/sim-category/${id}`;
   try {
     const response = await http.delete(apiUrl, {
       headers: {
@@ -195,7 +195,7 @@ export const deleteSimCategories = async (id) => {
 };
 
 export const getSimConnectionTypes = async () => {
-  const apiUrl = `${config.baseUrl}/drm-api/api/sim-management/v1/sim-connection-type`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/sim-management/v1/sim-connection-type`;
   try {
     const response = await http.get(apiUrl, {
       headers: {
@@ -213,7 +213,7 @@ export const getSimConnectionTypes = async () => {
 };
 
 export const createSimConnectionTypes = async (data) => {
-  const apiUrl = `${config.baseUrl}/drm-api/api/sim-management/v1/sim-connection-type`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/sim-management/v1/sim-connection-type`;
   const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
   data['createdBy'] = loggedInUser.fullname || '';
   try {
@@ -233,7 +233,7 @@ export const createSimConnectionTypes = async (data) => {
 };
 
 export const updateSimConnectionTypes = async (data, seq_id) => {
-  const apiUrl = `${config.baseUrl}/drm-api/api/sim-management/v1/sim-connection-type/${seq_id}`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/sim-management/v1/sim-connection-type/${seq_id}`;
   const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
   data['lastModifiedBy'] = loggedInUser.fullname || '';
   try {
@@ -253,7 +253,7 @@ export const updateSimConnectionTypes = async (data, seq_id) => {
 };
 
 export const deleteSimConnectionTypes = async (id) => {
-  const apiUrl = `${config.baseUrl}/drm-api/api/sim-management/v1/sim-connection-type/${id}`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/sim-management/v1/sim-connection-type/${id}`;
   try {
     const response = await http.delete(apiUrl, {
       headers: {
@@ -271,7 +271,7 @@ export const deleteSimConnectionTypes = async (id) => {
 };
 
 export const getSimHlrRequestMapping = async () => {
-  const apiUrl = `${config.baseUrl}/drm-api/api/sim-management/v1/simHlr-request-mapping`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/sim-management/v1/simHlr-request-mapping`;
   try {
     const response = await http.get(apiUrl, {
       headers: {
@@ -289,7 +289,7 @@ export const getSimHlrRequestMapping = async () => {
 };
 
 export const createSimHlrRequestMapping = async (data) => {
-  const apiUrl = `${config.baseUrl}/drm-api/api/sim-management/v1/simHlr-request-mapping`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/sim-management/v1/simHlr-request-mapping`;
   const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
   data['createdBy'] = loggedInUser.fullname || '';
   try {
@@ -309,7 +309,7 @@ export const createSimHlrRequestMapping = async (data) => {
 };
 
 export const updateSimHlrRequestMapping = async (data, seq_id) => {
-  const apiUrl = `${config.baseUrl}/drm-api/api/sim-management/v1/simHlr-request-mapping/${seq_id}`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/sim-management/v1/simHlr-request-mapping/${seq_id}`;
   const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
   data['lastModifiedBy'] = loggedInUser.fullname || '';
   try {
@@ -329,7 +329,7 @@ export const updateSimHlrRequestMapping = async (data, seq_id) => {
 };
 
 export const deleteSimHlrRequestMapping = async (id) => {
-  const apiUrl = `${config.baseUrl}/drm-api/api/sim-management/v1/simHlr-request-mapping/${id}`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/sim-management/v1/simHlr-request-mapping/${id}`;
   try {
     const response = await http.delete(apiUrl, {
       headers: {
@@ -347,7 +347,7 @@ export const deleteSimHlrRequestMapping = async (id) => {
 };
 
 export const simHlrRequestMappingSequenceID = async (id) => {
-  const apiUrl = `${config.baseUrl}/drm-api/api/sim-management/v1/sim-requestmapping-sequenceId`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/sim-management/v1/sim-requestmapping-sequenceId`;
   try {
     const response = await http.get(apiUrl, {
       headers: {
@@ -365,7 +365,7 @@ export const simHlrRequestMappingSequenceID = async (id) => {
 };
 
 export const getSimPrefixes = async () => {
-  const apiUrl = `${config.baseUrl}/drm-api/api/sim-management/v1/sim-prefix`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/sim-management/v1/sim-prefix`;
   try {
     const response = await http.get(apiUrl, {
       headers: {
@@ -384,7 +384,7 @@ export const getSimPrefixes = async () => {
 export const createSimPrefixes = async (data) => {
   const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
   data['createdBy'] = loggedInUser.fullname || '';
-  const apiUrl = `${config.baseUrl}/drm-api/api/sim-management/v1/sim-prefix`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/sim-management/v1/sim-prefix`;
   try {
     const response = await http.post(apiUrl, data, {
       headers: {
@@ -404,7 +404,7 @@ export const createSimPrefixes = async (data) => {
 export const updateSimPrefixes = async (data, seq_id) => {
   const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
   data['lastModifiedBy'] = loggedInUser.fullname || '';
-  const apiUrl = `${config.baseUrl}/drm-api/api/sim-management/v1/sim-prefix/${seq_id}`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/sim-management/v1/sim-prefix/${seq_id}`;
   try {
     const response = await http.put(apiUrl, data, {
       headers: {
@@ -422,7 +422,7 @@ export const updateSimPrefixes = async (data, seq_id) => {
 };
 
 export const deleteSimPrefix = async (seq_id) => {
-  const apiUrl = `${config.baseUrl}/drm-api/api/sim-management/v1/sim-prefix/${seq_id}`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/sim-management/v1/sim-prefix/${seq_id}`;
 
   try {
     const response = await http.delete(apiUrl, {
@@ -441,7 +441,7 @@ export const deleteSimPrefix = async (seq_id) => {
 };
 
 export const getSimHRL = async () => {
-  const apiUrl = `${config.baseUrl}/drm-api/api/sim-management/v1/sim-hlr`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/sim-management/v1/sim-hlr`;
   try {
     const response = await http.get(apiUrl, {
       headers: {
@@ -459,7 +459,7 @@ export const getSimHRL = async () => {
 
 export const createSimHRLConfig = async (data) => {
   // console.log(data, " the data")
-  const apiUrl = `${config.baseUrl}/drm-api/api/sim-management/v1/sim-hlr`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/sim-management/v1/sim-hlr`;
   const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
   data['createdBy'] = loggedInUser.fullname || '';
   try {
@@ -481,7 +481,7 @@ export const createSimHRLConfig = async (data) => {
 export const updateSimHRLConfig = async (data, seq_id) => {
   const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
   data['lastModifiedBy'] = loggedInUser.fullname || '';
-  const apiUrl = `${config.baseUrl}/drm-api/api/sim-management/v1/sim-hlr/${seq_id}`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/sim-management/v1/sim-hlr/${seq_id}`;
   try {
     const response = await http.put(apiUrl, data, {
       headers: {
@@ -498,7 +498,7 @@ export const updateSimHRLConfig = async (data, seq_id) => {
 };
 
 export const deleteSimHRLConfig = async (seq_id) => {
-  const apiUrl = `${config.baseUrl}/drm-api/api/sim-management/v1/sim-hlr/${seq_id}`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/sim-management/v1/sim-hlr/${seq_id}`;
   try {
     const response = await http.delete(apiUrl, {
       headers: {
@@ -515,7 +515,7 @@ export const deleteSimHRLConfig = async (seq_id) => {
 };
 
 export const getHLRBatchMapping = async () => {
-  const apiUrl = `${config.baseUrl}/drm-api/api/sim-management/v1/hlr-batch-mapping`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/sim-management/v1/hlr-batch-mapping`;
   try {
     const response = await http.get(apiUrl, {
       headers: {
@@ -534,7 +534,7 @@ export const getHLRBatchMapping = async () => {
 export const createHLRBatchMapping = async (data) => {
   const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
   data['createdBy'] = loggedInUser.fullname || '';
-  const apiUrl = `${config.baseUrl}/drm-api/api/sim-management/v1/hlr-batch-mapping`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/sim-management/v1/hlr-batch-mapping`;
   try {
     const response = await http.post(apiUrl, data, {
       headers: {
@@ -554,7 +554,7 @@ export const createHLRBatchMapping = async (data) => {
 export const updateHLRBatchMapping = async (data, categorisationNumber) => {
   const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
   data['lastModifiedBy'] = loggedInUser.fullname || '';
-  const apiUrl = `${config.baseUrl}/drm-api/api/sim-management/v1/hlr-batch-mapping/${categorisationNumber}`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/sim-management/v1/hlr-batch-mapping/${categorisationNumber}`;
   try {
     const response = await http.put(apiUrl, data, {
       headers: {
@@ -573,7 +573,7 @@ export const updateHLRBatchMapping = async (data, categorisationNumber) => {
 
 export const deleteHLRBatchMapping = async (categorisationNumber) => {
   // console.log(categorisationNumber, ' the batch id');
-  const apiUrl = `${config.baseUrl}/drm-api/api/sim-management/v1/hlr-batch-mapping/${categorisationNumber}`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/sim-management/v1/hlr-batch-mapping/${categorisationNumber}`;
   try {
     const response = await http.delete(apiUrl, {
       headers: {
@@ -591,7 +591,7 @@ export const deleteHLRBatchMapping = async (categorisationNumber) => {
 };
 
 export const getHLRImsiNumberRange = async () => {
-  const apiUrl = `${config.baseUrl}/drm-api/api/sim-management/v1/hlr-imsi-number-range`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/sim-management/v1/hlr-imsi-number-range`;
   try {
     const response = await http.get(apiUrl, {
       headers: {
@@ -609,7 +609,7 @@ export const getHLRImsiNumberRange = async () => {
 };
 
 export const getHLRImsiNumberRangeSequenceId = async () => {
-  const apiUrl = `${config.baseUrl}/drm-api/api/sim-management/v1/hlr-imsi-sequenceId`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/sim-management/v1/hlr-imsi-sequenceId`;
   try {
     const response = await http.get(apiUrl, {
       headers: {
@@ -627,7 +627,7 @@ export const getHLRImsiNumberRangeSequenceId = async () => {
 };
 
 export const createHLRImsiNumberRange = async (data) => {
-  const apiUrl = `${config.baseUrl}/drm-api/api/sim-management/v1/hlr-imsi-number-range`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/sim-management/v1/hlr-imsi-number-range`;
   try {
     const response = await http.post(apiUrl, data, {
       headers: {
@@ -645,7 +645,7 @@ export const createHLRImsiNumberRange = async (data) => {
 };
 
 export const updateHLRImsiNumberRange = async (data, id) => {
-  const apiUrl = `${config.baseUrl}/drm-api/api/sim-management/v1/hlr-imsi-number-range/${id}`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/sim-management/v1/hlr-imsi-number-range/${id}`;
   try {
     const response = await http.put(apiUrl, data, {
       headers: {
@@ -663,7 +663,7 @@ export const updateHLRImsiNumberRange = async (data, id) => {
 };
 
 export const deleteHLRImsiNumberRange = async (categorisationNumber) => {
-  const apiUrl = `${config.baseUrl}/drm-api/api/sim-management/v1/hlr-imsi-number-range/${categorisationNumber}`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/sim-management/v1/hlr-imsi-number-range/${categorisationNumber}`;
   try {
     const response = await http.delete(apiUrl, {
       headers: {
@@ -681,7 +681,7 @@ export const deleteHLRImsiNumberRange = async (categorisationNumber) => {
 };
 
 export const getHLRSerialNumberRange = async () => {
-  const apiUrl = `${config.baseUrl}/drm-api/api/sim-management/v1/hlr-serial-number-range`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/sim-management/v1/hlr-serial-number-range`;
   try {
     const response = await http.get(apiUrl, {
       headers: {
@@ -699,7 +699,7 @@ export const getHLRSerialNumberRange = async () => {
 };
 
 export const getHLRSerialNumberRangeSequenceId = async () => {
-  const apiUrl = `${config.baseUrl}/drm-api/api/sim-management/v1/hlr-serial-range-sequenceId`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/sim-management/v1/hlr-serial-range-sequenceId`;
   try {
     const response = await http.get(apiUrl, {
       headers: {
@@ -717,7 +717,7 @@ export const getHLRSerialNumberRangeSequenceId = async () => {
 };
 
 export const createHLRSerialNumberRange = async (data) => {
-  const apiUrl = `${config.baseUrl}/drm-api/api/sim-management/v1/hlr-serial-number-range`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/sim-management/v1/hlr-serial-number-range`;
   try {
     const response = await http.post(apiUrl, data, {
       headers: {
@@ -735,7 +735,7 @@ export const createHLRSerialNumberRange = async (data) => {
 };
 
 export const updateHLRSerialNumberRange = async (data, id) => {
-  const apiUrl = `${config.baseUrl}/drm-api/api/sim-management/v1/hlr-serial-number-range/${id}`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/sim-management/v1/hlr-serial-number-range/${id}`;
   try {
     const response = await http.put(apiUrl, data, {
       headers: {
@@ -754,7 +754,7 @@ export const updateHLRSerialNumberRange = async (data, id) => {
 
 export const deleteHLRSerialNumberRange = async (id) => {
   //console.log(id, " the id")
-  const apiUrl = `${config.baseUrl}/drm-api/api/sim-management/v1/hlr-serial-number-range/${id}`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/sim-management/v1/hlr-serial-number-range/${id}`;
   try {
     const response = await http.delete(apiUrl, {
       headers: {
@@ -773,7 +773,7 @@ export const deleteHLRSerialNumberRange = async (id) => {
 };
 
 export const getHLRBatchNumberRange = async () => {
-  const apiUrl = `${config.baseUrl}/drm-api/api/sim-management/v1/hlr-batch-range`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/sim-management/v1/hlr-batch-range`;
   try {
     const response = await http.get(apiUrl, {
       headers: {
@@ -790,7 +790,7 @@ export const getHLRBatchNumberRange = async () => {
 };
 
 export const getHLRBatchNumberRangeSequenceId = async () => {
-  const apiUrl = `${config.baseUrl}/drm-api/api/sim-management/v1/hlr-batchmapping-sequenceId`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/sim-management/v1/hlr-batchmapping-sequenceId`;
   try {
     const response = await http.get(apiUrl, {
       headers: {
@@ -808,7 +808,7 @@ export const getHLRBatchNumberRangeSequenceId = async () => {
 };
 
 export const createHLRBatchNumberRange = async (data) => {
-  const apiUrl = `${config.baseUrl}/drm-api/api/sim-management/v1/hlr-batch-range`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/sim-management/v1/hlr-batch-range`;
   try {
     const response = await http.post(apiUrl, data, {
       headers: {
@@ -826,7 +826,7 @@ export const createHLRBatchNumberRange = async (data) => {
 };
 
 export const updateHLRBatchNumberRange = async (data, id) => {
-  const apiUrl = `${config.baseUrl}/drm-api/api/sim-management/v1/hlr-batch-range/${id}`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/sim-management/v1/hlr-batch-range/${id}`;
   try {
     const response = await http.put(apiUrl, data, {
       headers: {
@@ -844,7 +844,7 @@ export const updateHLRBatchNumberRange = async (data, id) => {
 };
 
 export const deleteHLRBatchRange = async (seq_id) => {
-  const apiUrl = `${config.baseUrl}/drm-api/api/sim-management/v1/hlr-batch-range/${seq_id}`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/sim-management/v1/hlr-batch-range/${seq_id}`;
   try {
     const response = await http.delete(apiUrl, {
       headers: {
@@ -862,7 +862,7 @@ export const deleteHLRBatchRange = async (seq_id) => {
 };
 
 export const getHLRBatchNumberRangeGenerator = async () => {
-  const apiUrl = `${config.baseUrl}/drm-api/api/sim-management/v1/batchNumberGenerator`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/sim-management/v1/batchNumberGenerator`;
   try {
     const response = await http.get(apiUrl, {
       headers: {
@@ -880,7 +880,7 @@ export const getHLRBatchNumberRangeGenerator = async () => {
 };
 
 export const createHLRBatchNumberGenerator = async (data) => {
-  const apiUrl = `${config.baseUrl}/drm-api/api/sim-management/v1/batchNumberGenerator`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/sim-management/v1/batchNumberGenerator`;
   try {
     const response = await http.post(apiUrl, data, {
       headers: {
@@ -898,7 +898,7 @@ export const createHLRBatchNumberGenerator = async (data) => {
 };
 
 export const updateHLRBatchNumberGenerator = async (data, id) => {
-  const apiUrl = `${config.baseUrl}/drm-api/api/sim-management/v1/batchNumberGenerator/${id}`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/sim-management/v1/batchNumberGenerator/${id}`;
   try {
     const response = await http.put(apiUrl, data, {
       headers: {
@@ -916,7 +916,7 @@ export const updateHLRBatchNumberGenerator = async (data, id) => {
 };
 
 export const deleteHLRBatchGenerator = async (id) => {
-  const apiUrl = `${config.baseUrl}/drm-api/api/sim-management/v1/hlr-batch-number-range/${id}`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/sim-management/v1/hlr-batch-number-range/${id}`;
   try {
     const response = await http.delete(apiUrl, {
       headers: {
@@ -934,7 +934,7 @@ export const deleteHLRBatchGenerator = async (id) => {
 };
 
 export const getHLRBatchMappingSequenceId = async () => {
-  const apiUrl = `${config.baseUrl}/drm-api/api/sim-management/v1/hlr-batchmapping-sequenceId`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/sim-management/v1/hlr-batchmapping-sequenceId`;
   try {
     const response = await http.get(apiUrl, {
       headers: {
@@ -951,7 +951,7 @@ export const getHLRBatchMappingSequenceId = async () => {
 };
 
 export const getSimManufacturers = async () => {
-  const apiUrl = `${config.baseUrl}/drm-api/api/sim-management/v1/sim-manufacturer`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/sim-management/v1/sim-manufacturer`;
   try {
     const response = await http.get(apiUrl, {
       headers: {
@@ -970,7 +970,7 @@ export const getSimManufacturers = async () => {
 export const createSimManufacturers = async (data) => {
   const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
   data['createdBy'] = loggedInUser.fullname || '';
-  const apiUrl = `${config.baseUrl}/drm-api/api/sim-management/v1/sim-manufacturer`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/sim-management/v1/sim-manufacturer`;
   try {
     const response = await http.post(apiUrl, data, {
       headers: {
@@ -991,7 +991,7 @@ export const updateSimManufacturers = async (data, seq_id) => {
   const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
   data['lastModifiedBy'] = loggedInUser.fullname || '';
   // console.log(seq_id, the )
-  const apiUrl = `${config.baseUrl}/drm-api/api/sim-management/v1/sim-manufacturer/${seq_id}`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/sim-management/v1/sim-manufacturer/${seq_id}`;
   try {
     const response = await http.put(apiUrl, data, {
       headers: {
@@ -1009,7 +1009,7 @@ export const updateSimManufacturers = async (data, seq_id) => {
 };
 
 export const deleteSimManufacturers = async (id) => {
-  const apiUrl = `${config.baseUrl}/drm-api/api/sim-management/v1/sim-manufacturer/${id}`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/sim-management/v1/sim-manufacturer/${id}`;
   try {
     const response = await http.delete(apiUrl, {
       headers: {
@@ -1026,7 +1026,7 @@ export const deleteSimManufacturers = async (id) => {
 };
 
 export const getSimhlrByBatchNumberFilter = async (batchNumber) => {
-  const apiUrl = `${config.baseUrl}/drm-api/api/sim-management/v1/simhlr-by-batch-number-filter/${batchNumber}`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/sim-management/v1/simhlr-by-batch-number-filter/${batchNumber}`;
   try {
     const response = await http.get(apiUrl, {
       headers: {
@@ -1043,7 +1043,7 @@ export const getSimhlrByBatchNumberFilter = async (batchNumber) => {
 };
 
 export const getSimhlrByBatchNumber = async () => {
-  const apiUrl = `${config.baseUrl}/drm-api/api/sim-management/v1/simhlr-by-batch-number`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/sim-management/v1/simhlr-by-batch-number`;
   try {
     const response = await http.get(apiUrl, {
       headers: {
@@ -1062,7 +1062,7 @@ export const getSimhlrByBatchNumber = async () => {
 export const createSimhlrByBatchNumber = async (data) => {
   const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
   data['createdBy'] = loggedInUser.fullname || '';
-  const apiUrl = `${config.baseUrl}/drm-api/api/sim-management/v1/simhlr-by-batch-number`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/sim-management/v1/simhlr-by-batch-number`;
   try {
     const response = await http.post(apiUrl, data, {
       headers: {
@@ -1083,7 +1083,7 @@ export const updateSimhlrByBatchNumber = async (data, batchNumber) => {
   const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
   data['lastModifiedBy'] = loggedInUser.fullname || '';
   //console.log(seq_id, the);
-  const apiUrl = `${config.baseUrl}/drm-api/api/sim-management/v1/simhlr-by-batch-number/${batchNumber}`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/sim-management/v1/simhlr-by-batch-number/${batchNumber}`;
   try {
     const response = await http.put(apiUrl, data, {
       headers: {
@@ -1101,7 +1101,7 @@ export const updateSimhlrByBatchNumber = async (data, batchNumber) => {
 };
 
 export const deleteSimhlrByBatchNumber = async (batchNumber) => {
-  const apiUrl = `${config.baseUrl}/drm-api/api/sim-management/v1/simhlr-by-batch-number/${batchNumber}`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/sim-management/v1/simhlr-by-batch-number/${batchNumber}`;
   try {
     const response = await http.delete(apiUrl, {
       headers: {
@@ -1120,7 +1120,7 @@ export const deleteSimhlrByBatchNumber = async (batchNumber) => {
 // ========================================================================================
 
 export const getSimConstantConfigSequenceId = async () => {
-  const apiUrl = `${config.baseUrl}/drm-api/api/sim-management/v1/sim-constant-config-sequenceId`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/sim-management/v1/sim-constant-config-sequenceId`;
   try {
     const response = await http.get(apiUrl, {
       headers: {
@@ -1138,7 +1138,7 @@ export const getSimConstantConfigSequenceId = async () => {
 };
 
 export const getSimConstantConfig = async () => {
-  const apiUrl = `${config.baseUrl}/drm-api/api/sim-management/v1/sim-constant-configuration`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/sim-management/v1/sim-constant-configuration`;
   try {
     const response = await http.get(apiUrl, {
       headers: {
@@ -1164,7 +1164,7 @@ export const getSimConstantConfig = async () => {
 export const createSimConstantConfig = async (data) => {
   const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
   data['createdBy'] = loggedInUser.fullname || '';
-  const apiUrl = `${config.baseUrl}/drm-api/api/sim-management/v1/sim-constant-configuration`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/sim-management/v1/sim-constant-configuration`;
   try {
     const response = await http.post(apiUrl, data, {
       headers: {
@@ -1184,7 +1184,7 @@ export const createSimConstantConfig = async (data) => {
 export const updateSimConstantConfig = async (data, id) => {
   const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
   data['lastModifiedBy'] = loggedInUser.fullname || '';
-  const apiUrl = `${config.baseUrl}/drm-api/api/sim-management/v1/sim-constant-configuration/${id}`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/sim-management/v1/sim-constant-configuration/${id}`;
   try {
     const response = await http.put(apiUrl, data, {
       headers: {
@@ -1203,7 +1203,7 @@ export const updateSimConstantConfig = async (data, id) => {
 
 export const deleteSimConstantConfig = async (id) => {
   //console.log(id, " the id in delete function")
-  const apiUrl = `${config.baseUrl}/drm-api/api/sim-management/v1/sim-constant-configuration/${id}`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/sim-management/v1/sim-constant-configuration/${id}`;
   try {
     const response = await http.delete(apiUrl, {
       headers: {
@@ -1221,7 +1221,7 @@ export const deleteSimConstantConfig = async (id) => {
 };
 
 export const simOrderSearch = async (fieldName, fieldValue) => {
-  const apiUrl = `${config.baseUrl}/drm-api/api/sim-management/v1/search/${fieldName}/${fieldValue}`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/sim-management/v1/search/${fieldName}/${fieldValue}`;
   try {
     const response = await http.get(apiUrl, {
       headers: {
@@ -1237,7 +1237,7 @@ export const simOrderSearch = async (fieldName, fieldValue) => {
 };
 
 export const simOrderDetails = async (seqId) => {
-  const apiUrl = `${config.baseUrl}/drm-api/api/sim-management/v1/sim-order-details/${seqId}`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/sim-management/v1/sim-order-details/${seqId}`;
   try {
     const response = await http.get(apiUrl, {
       headers: {
@@ -1253,7 +1253,7 @@ export const simOrderDetails = async (seqId) => {
 };
 
 export const createSimOrder = async (data) => {
-  const apiUrl = `${config.baseUrl}/drm-api/api/sim-management/v1/sim-order`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/sim-management/v1/sim-order`;
   const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
   data['createdBy'] = loggedInUser.fullname || '';
   try {
@@ -1274,7 +1274,7 @@ export const createSimOrder = async (data) => {
 export const editSimOrder = async (data) => {
   const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
   data['lastModifiedBy'] = loggedInUser.fullname || '';
-  const apiUrl = `${config.baseUrl}/drm-api/api/sim-management/v1/sim-order/${data.seq_id}`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/sim-management/v1/sim-order/${data.seq_id}`;
 
   try {
     const response = await http.put(apiUrl, data, {
@@ -1291,7 +1291,7 @@ export const editSimOrder = async (data) => {
 };
 
 export const editSimHLR = async (data) => {
-  const apiUrl = `${config.baseUrl}/drm-api/api/sim-management/v1/sim-order/hrlId`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/sim-management/v1/sim-order/hrlId`;
   const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
   data['lastModifiedBy'] = loggedInUser.fullname || '';
   try {
@@ -1309,7 +1309,7 @@ export const editSimHLR = async (data) => {
 };
 
 export const getCsOfferMasterData = async () => {
-  const apiUrl = `${config.baseUrl}/drm-api/api/TSATOffer/v1/csOfferMassterData`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/TSATOffer/v1/csOfferMassterData`;
 
   try {
     const response = await http.get(apiUrl, {
@@ -1327,7 +1327,7 @@ export const getCsOfferMasterData = async () => {
 };
 
 export const getCsOfferFormMasterSchema = async () => {
-  const apiUrl = `${config.baseUrl}/drm-api/api/TSATForm/v1/formMasterSchema`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/TSATForm/v1/formMasterSchema`;
 
   try {
     const response = await http.get(apiUrl, {
@@ -1345,7 +1345,7 @@ export const getCsOfferFormMasterSchema = async () => {
 };
 
 export const fetchTSATMasterData = async () => {
-  const apiUrl = `${config.baseUrl}/drm-api/api/tsat/v1/TSATMasterData`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/tsat/v1/TSATMasterData`;
 
   try {
     const response = await http.get(apiUrl, {
@@ -1379,7 +1379,7 @@ export const fetchDBOMasterData = async () => {
 };
 
 export const fetchMsisdnConfigData = async (code) => {
-  const apiUrl = `${config.baseUrl}/drm-api/api/msisdnOverview/v1/getMsisdnData/${code}`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/msisdnOverview/v1/getMsisdnData/${code}`;
 
   try {
     const response = await http.get(apiUrl, {
@@ -1397,7 +1397,7 @@ export const fetchMsisdnConfigData = async (code) => {
 };
 
 export const getTableBodyForTableView = async (additionalUrl) => {
-  const apiUrl = `${config.baseUrl}/drm-api/api/${additionalUrl}`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/${additionalUrl}`;
 
   try {
     if (!additionalUrl) {
@@ -1419,7 +1419,7 @@ export const getTableBodyForTableView = async (additionalUrl) => {
 };
 
 export const getCsSearchContent = async (searchId) => {
-  const apiUrl = `${config.baseUrl}/drm-api/api/SimManager/v1/mockData?name=csOfferSearchData`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/SimManager/v1/mockData?name=csOfferSearchData`;
 
   try {
     const response = await http.get(apiUrl, {
@@ -1441,7 +1441,7 @@ export const getCsSearchContent = async (searchId) => {
 };
 
 export const getOrderSequenceId = async () => {
-  const apiUrl = `${config.baseUrl}/drm-api/api/sim-management/v1/ordersequenceId`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/sim-management/v1/ordersequenceId`;
   try {
     const response = await http.get(apiUrl, {
       headers: {
@@ -1458,7 +1458,7 @@ export const getOrderSequenceId = async () => {
 };
 
 export const getHLRSequenceId = async () => {
-  const apiUrl = `${config.baseUrl}/drm-api/api/sim-management/v1/hlrsequenceId`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/sim-management/v1/hlrsequenceId`;
   try {
     const response = await http.get(apiUrl, {
       headers: {
@@ -1475,7 +1475,7 @@ export const getHLRSequenceId = async () => {
 };
 
 export const getOfferOverviewData = async () => {
-  const apiUrl = `${config.baseUrl}/drm-api/api/SimManager/v1/mockData?name=tsatOverviewCardData`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/SimManager/v1/mockData?name=tsatOverviewCardData`;
   try {
     const response = await http.get(apiUrl, {
       headers: {
@@ -1492,7 +1492,7 @@ export const getOfferOverviewData = async () => {
 };
 
 export const getAllStateListData = async () => {
-  const apiUrl = `${config.baseUrl}/drm-api/api/SimManager/v1/mockData?name=allStateList`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/SimManager/v1/mockData?name=allStateList`;
 
   try {
     const response = await http.get(apiUrl, {
@@ -1510,7 +1510,7 @@ export const getAllStateListData = async () => {
 };
 
 export const getAllCitiesListData = async () => {
-  const apiUrl = `${config.baseUrl}/drm-api/api/SimManager/v1/mockData?name=allCitiesList`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/SimManager/v1/mockData?name=allCitiesList`;
   try {
     const response = await http.get(apiUrl, {
       headers: {
@@ -1579,8 +1579,8 @@ export const buildTheCsvFileFromJson = async (formData) => {
   }
 };
 
-export const uploadOutfileCsvToDRM = async (formData) => {
-  const apiUrl = `${config.baseUrl}/drm/bulk-processor/v1/drm-bulk/create/file`;
+export const uploadOutfileCsvToRMS = async (formData) => {
+  const apiUrl = `${config.baseUrl}/rms/bulk-processor/v1/rms-bulk/create/file`;
 
   try {
     const response = await http.post(apiUrl, formData, {
@@ -1592,14 +1592,14 @@ export const uploadOutfileCsvToDRM = async (formData) => {
 
     return response;
   } catch (error) {
-    console.log('DRM Error Response', error);
+    console.log('RMS Error Response', error);
     return { data: null };
     //return await apiErrorHandle(error.response);
   }
 };
 
 export const getResourceDetails = async () => {
-  const apiUrl = `${config.baseUrl}/drm/resource-inventory/v1/resource-category/?limit=500&offset=0`;
+  const apiUrl = `${config.baseUrl}/rms/resource-inventory/v1/resource-category/?limit=500&offset=0`;
   try {
     const response = await http.get(apiUrl, {
       headers: {
@@ -1634,7 +1634,7 @@ export const initOrderInfile = async (orderId) => {
 };
 
 export const getSIMTypeSequenceID = async () => {
-  const apiUrl = `${config.baseUrl}/drm-api/api/sim-management/v1/sim-type-sequenceId`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/sim-management/v1/sim-type-sequenceId`;
 
   try {
     const response = await http.get(apiUrl, {
@@ -1651,7 +1651,7 @@ export const getSIMTypeSequenceID = async () => {
 };
 
 export const getSIMCategorySequenceID = async () => {
-  const apiUrl = `${config.baseUrl}/drm-api/api/sim-management/v1/sim-category-sequenceId`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/sim-management/v1/sim-category-sequenceId`;
   try {
     const response = await http.get(apiUrl, {
       headers: {
@@ -1667,7 +1667,7 @@ export const getSIMCategorySequenceID = async () => {
 };
 
 export const getSIMConnectionTypeSequenceID = async () => {
-  const apiUrl = `${config.baseUrl}/drm-api/api/sim-management/v1/sim-connection-type-sequenceId`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/sim-management/v1/sim-connection-type-sequenceId`;
   try {
     const response = await http.get(apiUrl, {
       headers: {
@@ -1683,7 +1683,7 @@ export const getSIMConnectionTypeSequenceID = async () => {
 };
 
 export const getSIMPrefixSequenceID = async () => {
-  const apiUrl = `${config.baseUrl}/drm-api/api/sim-management/v1/sim-prefix-sequenceId`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/sim-management/v1/sim-prefix-sequenceId`;
   try {
     const response = await http.get(apiUrl, {
       headers: {
@@ -1699,7 +1699,7 @@ export const getSIMPrefixSequenceID = async () => {
 };
 
 export const getSIMManufacturerSequenceID = async () => {
-  const apiUrl = `${config.baseUrl}/drm-api/api/sim-management/v1/sim-manufacturer-sequenceId`;
+  const apiUrl = `${config.baseUrl}/rms-api/api/sim-management/v1/sim-manufacturer-sequenceId`;
   try {
     const response = await http.get(apiUrl, {
       headers: {

@@ -45,7 +45,7 @@ import {
   getResourceDetails,
   simOrderDetails,
   uploadAllManufacturerFiles,
-  uploadOutfileCsvToDRM,
+  uploadOutfileCsvToRMS,
 } from '../../services/ApiService';
 import DynamicTable from '../../components/dynamicTable/DynamicTable.jsx';
 import { MANUFACTURER_FILE_STATUS } from '../sim-components/addNewSimOrderUI/stepperUIs/stepperTitles.js';
@@ -73,7 +73,7 @@ import { manufacturerFileReport_table_config } from '../tableTemplate/manufactur
 import {
   downloadCsvFormJson,
   joinOutputVariablesData,
-  prepareDataForDRM,
+  prepareDataForRMS,
 } from '../sim-management-utils/sim-management-utils';
 import InfoIcon from '@mui/icons-material/Info';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
@@ -149,9 +149,9 @@ const SimManufacturerFilesPage = () => {
   const [socketConnected, setSocketConnected] = useState(false);
   const [validOtaOutPer, setValidOtaOutPer] = useState([]);
   const [invalidOtaOutPer, setInvalidOtaOutPer] = useState([]);
-  const [drmSuccessSaving, setDrmSuccessSaving] = useState([]);
-  const [drmFailureSaving, setDrmFailureSaving] = useState([]);
-  const [savingToDrm, setSavingToDrm] = useState(false);
+  const [rmsSuccessSaving, setRmsSuccessSaving] = useState([]);
+  const [rmsFailureSaving, setRmsFailureSaving] = useState([]);
+  const [savingToRms, setSavingToRms] = useState(false);
   const [drawerDataType, setDrawerDataType] = useState('');
   const [businessTypeKey, setBusinessTypeKey] = useState('PREPAID');
   const [expanded, setExpanded] = useState(false);
@@ -185,7 +185,7 @@ const SimManufacturerFilesPage = () => {
   };
   const getDrawerTableData = () => {
     if (drawerDataType === FAILED_SUBMISSION) {
-      return drmFailureSaving;
+      return rmsFailureSaving;
     }
     return drawerDataType == VALID_FILES ? validOtaOutPer : invalidOtaOutPer;
   };
@@ -615,9 +615,9 @@ const SimManufacturerFilesPage = () => {
   const submitValidFiles = async () => {
     const successResults = [];
     const failureResults = [];
-    setSavingToDrm(true);
-    setDrmSuccessSaving([]);
-    setDrmFailureSaving([]);
+    setSavingToRms(true);
+    setRmsSuccessSaving([]);
+    setRmsFailureSaving([]);
 
     for (const item of validOtaOutPer) {
       const {
@@ -629,7 +629,7 @@ const SimManufacturerFilesPage = () => {
       } = item;
 
       try {
-        await submitToDrmApp(batchNumber, otaFileData, outFileData);
+        await submitToRmsApp(batchNumber, otaFileData, outFileData);
         successResults.push({ ...item });
       } catch (error) {
         // console.log('error throw', error);
@@ -641,15 +641,15 @@ const SimManufacturerFilesPage = () => {
         });
       }
     }
-    setSavingToDrm('DONE');
-    setDrmSuccessSaving(successResults);
-    setDrmFailureSaving(failureResults);
+    setSavingToRms('DONE');
+    setRmsSuccessSaving(successResults);
+    setRmsFailureSaving(failureResults);
 
     console.log('submitValidFiles results', failureResults);
     //return results;
   };
 
-  const submitToDrmApp = async (batchNumber, otaFileData, outFileData) => {
+  const submitToRmsApp = async (batchNumber, otaFileData, outFileData) => {
     const transportKey = singleOrder['initialRequest'].transportKey;
     const combinedOutFileData = joinOutputVariablesData(
       otaFileData,
@@ -658,7 +658,7 @@ const SimManufacturerFilesPage = () => {
       transportKey
     );
     // console.log(combinedOutFileData);
-    const csvArrayOfObject = prepareDataForDRM(combinedOutFileData);
+    const csvArrayOfObject = prepareDataForRMS(combinedOutFileData);
 
     const currentBatchData = getCurrentBatchData(batchNumber);
 
@@ -670,21 +670,21 @@ const SimManufacturerFilesPage = () => {
       console.log('Throw error', { categoryId, schemaId });
 
       throw new Error(
-        `An error occurred while getting categoryId and schemaId from DRM resource: ${orderResourceType}`
+        `An error occurred while getting categoryId and schemaId from RMS resource: ${orderResourceType}`
       );
     }
 
-    const { drmCsvFile, columnMapping, drmCsvFileName } =
+    const { rmsCsvFile, columnMapping, rmsCsvFileName } =
       await generateCsvFileData(csvArrayOfObject, batchNumber);
 
-    if (!drmCsvFile || !columnMapping) {
+    if (!rmsCsvFile || !columnMapping) {
       throw new Error(
-        'An error occurred while generating the CSV file for DRM'
+        'An error occurred while generating the CSV file for RMS'
       );
     }
 
     const formData = new FormData();
-    formData.append('file', drmCsvFile);
+    formData.append('file', rmsCsvFile);
     formData.append('columnMapping', columnMapping);
     formData.append('categoryId', categoryId);
     formData.append('schemaId', schemaId);
@@ -692,28 +692,28 @@ const SimManufacturerFilesPage = () => {
       formData.append(bodyKey, CSV_FILE_TRANSFER_BODY[bodyKey]);
     });
 
-    // console.log('Ready to be sent to DRM', formData);
-    const drmResponse = await transferCsvToDrm(formData, drmCsvFileName);
+    // console.log('Ready to be sent to RMS', formData);
+    const rmsResponse = await transferCsvToRms(formData, rmsCsvFileName);
 
-    if (drmResponse.data) {
+    if (rmsResponse.data) {
       await updateTheBatchAndSave(batchNumber, SUBMITTED);
     }
   };
 
-  const transferCsvToDrm = async (formData, drmCsvFileName) => {
+  const transferCsvToRms = async (formData, rmsCsvFileName) => {
     try {
-      const drmResponse = await uploadOutfileCsvToDRM(formData);
-      // console.log('drmResponse', drmResponse);
+      const rmsResponse = await uploadOutfileCsvToRMS(formData);
+      // console.log('rmsResponse', rmsResponse);
 
       setErrorMessage(null);
       setSuccessMessage(
-        'A CSV file was successfully sent to DRM: ' + drmCsvFileName
+        'A CSV file was successfully sent to RMS: ' + rmsCsvFileName
       );
       setIsOpen(true);
-      return drmResponse;
+      return rmsResponse;
     } catch (error) {
       setErrorMessage(
-        'An error occurred when transferring the csv file to DRM'
+        'An error occurred when transferring the csv file to RMS'
       );
       setSuccessMessage(null);
       setIsOpen(true);
@@ -792,9 +792,9 @@ const SimManufacturerFilesPage = () => {
         setErrorMessage(
           "We couldn't find a resource category called : " +
             orderResourceType +
-            ' in DRM resource inventory. Kindly check if ' +
+            ' in RMS resource inventory. Kindly check if ' +
             orderResourceType +
-            ' is currently in the available resource category of DRM'
+            ' is currently in the available resource category of RMS'
         );
         setSuccessMessage(null);
         setInfoMessage(null);
@@ -825,14 +825,14 @@ const SimManufacturerFilesPage = () => {
         const url = window.URL.createObjectURL(new Blob([csvResponse.data]));
         const link = document.createElement('a');
         link.href = url;
-        const drmCsvFileName = batchNumber + '_OTA_OUT_FOR_DRM.csv';
-        link.setAttribute('download', drmCsvFileName);
+        const rmsCsvFileName = batchNumber + '_OTA_OUT_FOR_RMS.csv';
+        link.setAttribute('download', rmsCsvFileName);
         document.body.appendChild(link);
         link.click();
         link.remove();
 
-        // SEND CSV TO DRM =========================================
-        const drmCsvFile = new File([csvResponse.data], drmCsvFileName, {
+        // SEND CSV TO RMS =========================================
+        const rmsCsvFile = new File([csvResponse.data], rmsCsvFileName, {
           type: 'text/csv',
         });
 
@@ -848,13 +848,13 @@ const SimManufacturerFilesPage = () => {
           }
           columnMapping = columnMapping + keyToAppend;
         });
-        return { drmCsvFile, columnMapping, drmCsvFileName };
+        return { rmsCsvFile, columnMapping, rmsCsvFileName };
       } else {
         setErrorMessage("Couldn't generate CSV file for Batch: " + batchNumber);
         setSuccessMessage(null);
         setInfoMessage(null);
         setIsOpen(true);
-        return { drmCsvFile: null, columnMapping: null, drmCsvFileName: null };
+        return { rmsCsvFile: null, columnMapping: null, rmsCsvFileName: null };
       }
     } catch (error) {
       console.log(error);
@@ -862,7 +862,7 @@ const SimManufacturerFilesPage = () => {
       setSuccessMessage(null);
       setInfoMessage(null);
       setIsOpen(true);
-      return { drmCsvFile: null, columnMapping: null, drmCsvFileName: null };
+      return { rmsCsvFile: null, columnMapping: null, rmsCsvFileName: null };
     }
   };
 
@@ -1136,7 +1136,7 @@ const SimManufacturerFilesPage = () => {
                 p: 2,
               }}
             >
-              {savingToDrm == false && (
+              {savingToRms == false && (
                 <Box>
                   <Box
                     sx={{
@@ -1294,14 +1294,14 @@ const SimManufacturerFilesPage = () => {
                   </FlexBoxSpaceBetween>
                 </Box>
               )}
-              {savingToDrm == true && (
+              {savingToRms == true && (
                 <Box sx={{ marginTop: '60px', width: '50%', marginX: 'auto' }}>
                   <Box sx={{ textAlign: 'center', marginBottom: '15px' }}>
                     <CircularProgress size="50px" />
                   </Box>
                 </Box>
               )}
-              {savingToDrm === 'DONE' && (
+              {savingToRms === 'DONE' && (
                 <Box sx={{ marginTop: '60px', width: '50%', marginX: 'auto' }}>
                   <Box sx={{ textAlign: 'center', marginBottom: '15px' }}>
                     <Typography variant="h5">Process completed !</Typography>
@@ -1313,7 +1313,7 @@ const SimManufacturerFilesPage = () => {
                       marginTop: '15px',
                     }}
                   >
-                    {drmSuccessSaving.length > 0 && (
+                    {rmsSuccessSaving.length > 0 && (
                       <Box sx={{ marginLeft: '30px' }}>
                         <Typography variant="body2">
                           <CheckCircleIcon
@@ -1323,12 +1323,12 @@ const SimManufacturerFilesPage = () => {
                               top: '6px',
                             }}
                           />
-                          {drmSuccessSaving.length} .OTA/.OUT files CSV was
-                          successfully sent to DRM
+                          {rmsSuccessSaving.length} .OTA/.OUT files CSV was
+                          successfully sent to RMS
                         </Typography>
                       </Box>
                     )}
-                    {drmFailureSaving.length > 0 && (
+                    {rmsFailureSaving.length > 0 && (
                       <Box sx={{ marginLeft: '30px' }}>
                         <Typography variant="body2">
                           <InfoIcon
@@ -1338,7 +1338,7 @@ const SimManufacturerFilesPage = () => {
                               top: '6px',
                             }}
                           />
-                          {drmFailureSaving.length} CSV files sending failed...
+                          {rmsFailureSaving.length} CSV files sending failed...
                           (
                           <Typography
                             component="span"
@@ -1453,7 +1453,7 @@ const SimManufacturerFilesPage = () => {
                     <>{validOtaOutPer.length} valid files records found</>
                   )}
                   {drawerDataType == FAILED_SUBMISSION && (
-                    <>{drmFailureSaving.length} CSV files sending failed</>
+                    <>{rmsFailureSaving.length} CSV files sending failed</>
                   )}
                 </ValidInfoBox>
               </Typography>

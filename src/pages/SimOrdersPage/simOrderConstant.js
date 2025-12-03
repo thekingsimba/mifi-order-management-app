@@ -13,16 +13,16 @@ export const INVALID_FILES = 'Invalid files';
 export const VALID_FILES = 'Valid files';
 export const FAILED_SUBMISSION = 'Failed submission';
 export const SUBMITTED_INFO =
-  '.OTA and .OUT was successfully submitted and sent to DRM';
+  '.OTA and .OUT was successfully submitted and sent to RMS';
 export const REJECTED = 'REJECTED';
 export const CSV_FILE_TRANSFER_BODY = {
   '@type': 'SIM',
   value: 'SIM',
   '@baseType': 'PhysicalResource',
   userName: 'admin',
-  userRole: 'drmUser',
-  userType: 'DRMUser',
-  userBaseType: 'DRMUser',
+  userRole: 'rmsUser',
+  userType: 'RMSUser',
+  userBaseType: 'RMSUser',
   skipLines: '1',
   separator: ',',
 };
