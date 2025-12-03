@@ -93,7 +93,7 @@ A comprehensive React-based web application for managing MiFi (Mobile WiFi) and 
    VITE_DEV_FILE_GENERATOR_WEB_SOCKET_URL=ws://localhost:8082
 
    # Client Configuration
-   VITE_CLIENT=mtn
+   VITE_CLIENT=yourgsm
    ```
 
 ## 🚀 Running the Application
@@ -321,7 +321,3 @@ For more detailed documentation on specific features, please refer to:
 - Component usage guide
 - State management patterns
 - Form configuration guide
-
----
-
-**Note**: This application is designed for internal use within telecommunications operations. Ensure all environment variables and API endpoints are properly configured before deployment.
