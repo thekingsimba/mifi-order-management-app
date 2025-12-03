@@ -299,7 +299,7 @@ The application integrates with the following main API endpoints:
 - `/hlr-serial-number-range` - Serial number ranges
 - `/hlr-batch-range` - Batch number ranges
 
-### File Generator API (`/GSM Chip-file-gen/api/file-generator/`)
+### File Generator API (`/gsm-Chip-file-gen/api/file-generator/`)
 - `/outfile/upload-ota-out-file/` - Upload OTA files
 - `/outfile/upload-manufacturer-zip/` - Upload manufacturer files
 - `/json-to-csv/convert/` - Convert JSON to CSV
@@ -308,22 +308,6 @@ The application integrates with the following main API endpoints:
 ### User Management API (`/mifi-api/mifi-order/v1/`)
 - `/UserGroup/{type}` - User group information
 - `/getTokenAuth/getToken` - Token exchange
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## 📄 License
-
-This project is proprietary software. All rights reserved.
-
-## 👥 Support
-
-For support and questions, please contact the development team or create an issue in the project repository.
 
 ## 🔄 Version History
 
